@@ -1,0 +1,27 @@
+{
+  "name": "northwinds-sales",
+  "version": "1.0.0",
+  "description": "this is a test mean app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.3",
+    "body-parser": "^1.15.0",
+    "bootstrap": "^3.3.6",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.10",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "angular": "^1.5.3",
+    "chai": "^3.5.0",
+    "chi": "0.0.10",
+    "mocha": "^2.4.5",
+    "supertest": "^1.2.0"
+  }
+}

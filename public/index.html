@@ -1,0 +1,103 @@
+<html ng-app='northwindsales'>
+<head>
+
+    <title>NorthWinds</title>
+    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/public/css/style.css" rel="stylesheet">
+   
+    <script type="text/javascript" src="/angular/angular.js"></script>
+    <script type="text/javascript" src="/client/angular/northwindsales.js"></script>
+    <script type="text/javascript" src="/client/angular/controllers/teamManager.js"></script>
+    <script type="text/javascript" src="/client/angular/factories/memberHandler.js"></script>
+    <script type="text/javascript" src="/client/angular/factories/regionHandler.js"></script>
+
+
+</head>
+
+<body ng-controller='teamManager'>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">NORTH WINDS <small><i>Managerment Portal</i></small></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Sales</a>
+                    </li>
+                    <li>
+                        <a href="#">Service</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Sales Team <span ng-click="showadder = true" style="color:green;font-size:20px" class="glyphicon glyphicon-plus-sign pull-right"></span></div>
+                        <div class="panel-body" ng-hide="false">
+                             <div class="panel panel-default" ng-show="showadder">
+                                <div class="panel-heading">Add a Sales Rep<span ng-click="edit(rep)"></span><img class="img-responsive" ng-src="/public/images/{{rep.uuid}}.jpeg"></div>
+                                    <div class="panel-body">
+                                        <label>Name<input type="text" ng-model="newRep.name"></label>
+                                         <label>UUID Number<input type="text" ng-model="newRep.uuid"></label>
+                                          <button ng-click="showadder = false;newRep={}"  class="col-lg-5 btn btn-error">Canel</button>    
+                                        <button ng-click="addNewUser(newRep)"  class="col-lg-5 pull-right btn btn-primary">Save</button> 
+                                    </div>
+                                </div> 
+                            </div>
+                <div style="max-height:600px;overflow-y:auto">
+                        <div class="panel-body">
+                             <div class="panel panel-default" ng-repeat="rep in SalesReps">
+                                <div class="panel-heading">{{rep.name}} <span ng-click="edit(rep)" class="glyphicon glyphicon-pencil pull-right"></span><img class="img-responsive"  ng-src="/public/images/{{rep.uuid}}.jpeg"></div>
+                                    <div class="panel-body">
+                                        <span ng-repeat="region in rep.regions" style="margin-right:10px;border-radius:2px;padding:10px;background-color:green">{{region[0]}}</span>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+              </div>
+            </div>
+          
+            <div class="col-md-9">
+                     <div class="panel panel-default" ng-show="currentRep.uuid > 0">
+                        <div class="panel-heading">{{currentRep.name}}</div>
+                        <div class="panel-body">
+                            <img style="border-radius:2px;box-shadow: 0px 0px 15px rgba(0,0,0,0.4)" class="img-responsive col-lg-6" ng-src="/public/images/{{currentRep.uuid}}.jpeg">
+                            <div class="col-lg-6">
+                                <ul class="list-group" >
+                                   <li  ng-repeat="region in regions" class="list-group-item"><button ng-click="toggleRegion(region)" ng-class="checkifRegionSelected(region)" style="width:100%" class="btn btn-default" >
+                                    {{region}}</button>
+                                    </li>
+                                </ul>  
+                                <button ng-click="cancel(currentRep)"  class="col-lg-5 btn btn-error">Undo Changes</button>    
+                                <button ng-click="save(currentRep)"  class="col-lg-5 pull-right btn btn-primary">Save</button>  
+                                <button ng-click="delete(currentRep)"  style="margin-top:20px" class="col-lg-12 btn btn-danger">Delete {{currentRep.name}}</button>  
+                                
+                            </div>
+                        </div>   
+                    </div>
+            </div>
+        </div>
+    
+    </div>            
+</body>
+
+</html>
