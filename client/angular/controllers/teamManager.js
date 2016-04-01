@@ -9,7 +9,6 @@ app.controller('teamManager',function($scope,salesTeamManager,regionsHandler){
 	.then(function(reps){
 		$scope.SalesReps=reps;
 	});
-	console.log($scope.SalesReps);
 	$scope.checkifRegionSelected=function(region){
 		if($scope.currentRep.regions.indexOf(region) > -1){return 'regionSelected'}
 	}
@@ -25,7 +24,6 @@ app.controller('teamManager',function($scope,salesTeamManager,regionsHandler){
 		rep.regions=[];
 		salesTeamManager.addRep(rep)
 		.then(function(newRep){
-			console.log(newRep);
 			$scope.SalesReps.push(newRep);
 			$scope.newRep={};
 			$scope.showadder=false;
@@ -36,7 +34,6 @@ app.controller('teamManager',function($scope,salesTeamManager,regionsHandler){
 		salesTeamManager.deleteRep(rep)
 		.then(function(deletedRep){
 			for(var i = 0; i < $scope.SalesReps.length;i++){
-				console.log(deletedRep.data);
 			if(deletedRep.data._id == $scope.SalesReps[i]._id){
 				$scope.SalesReps.splice(i,1);
 				$scope.currentRep={};
@@ -48,14 +45,12 @@ app.controller('teamManager',function($scope,salesTeamManager,regionsHandler){
 	
 
 	$scope.edit=function(rep){
-		console.log(rep);
 			angular.copy(rep,$scope.currentRep);
 	}
 
 	$scope.save=function(rep){
 		salesTeamManager.updateRep(rep)
 		.then(function(updatedRep){
-			console.log(updatedRep);
 			for(var i = 0; i < $scope.SalesReps.length;i++){
 				if(updatedRep.uuid == $scope.SalesReps[i].uuid){angular.copy(updatedRep,$scope.SalesReps[i]);return};
 			}
@@ -63,7 +58,6 @@ app.controller('teamManager',function($scope,salesTeamManager,regionsHandler){
 	}
 		
 	$scope.cancel=function(rep){
-		console.log(rep);
 		for(var i = 0; i < $scope.SalesReps.length;i++){
 			if(rep.uuid == $scope.SalesReps[i].uuid){angular.copy($scope.SalesReps[i],$scope.currentRep)}
 		}

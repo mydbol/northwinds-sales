@@ -34,3 +34,6 @@ footer {
 .regionSelected:focus{
 	background-color: green;
 }
+.full{
+    background-color: green;
+}
