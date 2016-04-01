@@ -1,4 +1,4 @@
-app.factory('salesTeamManager',function($http){
+app.factory('SalesTeamManager',function($http){
 	return{getTeam,getRep,addRep,deleteRep,updateRep};
 	function getTeam(){
 		//return [{uuid:122,name:'Kevin OBrien', regions:['North','South','East']},{uuid:123,name:'Kevin OBrien', regions:['West','East']}];

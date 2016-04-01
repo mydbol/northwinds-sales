@@ -1,0 +1,9 @@
+- having a hard time with this code
+- had to change quite a bit to get it to work -- could be a node version issue? not sure
+- none of your static routes were working for me -- changes in path module
+- i think you should have simplified this a bit
+- not sure you needed the undo
+- you might want to give it another try and simplify it a bit-- 
+- your model should just contain an array of strings for the region
+- good effort on the advanced functionality - but I think it would have been better to leave it out and just get basics working smoother
+- be more careful with naming regionHandler.js -- should be region.factory.js and the naming of the actual factory should be RegionFactory 

@@ -1,6 +1,5 @@
-var app=angular.module('northwindsales',[])
-
-app.controller('teamManager',function($scope,salesTeamManager,regionsHandler){
+app.controller('teamManager',function($scope, SalesTeamManager, regionsHandler){
+  var salesTeamManager = SalesTeamManager;
 	//$scope.test={text:'your scope is alive'}
 	$scope.SalesReps=[];
 	$scope.currentRep={};
@@ -20,7 +19,8 @@ app.controller('teamManager',function($scope,salesTeamManager,regionsHandler){
 			if($scope.currentRep.regions.length < 3){$scope.currentRep.regions.push(region)};
 		}
 
-	}
+	};
+
 	$scope.addNewUser=function(rep){
 		rep.regions=[];
 		salesTeamManager.addRep(rep)
@@ -47,12 +47,12 @@ app.controller('teamManager',function($scope,salesTeamManager,regionsHandler){
 	
 	
 
-	$scope.edit=function(rep){
+	$scope.edit = function(rep){
 		console.log(rep);
 			angular.copy(rep,$scope.currentRep);
 	}
 
-	$scope.save=function(rep){
+	$scope.save = function(rep){
 		salesTeamManager.updateRep(rep)
 		.then(function(updatedRep){
 			console.log(updatedRep);
@@ -62,7 +62,7 @@ app.controller('teamManager',function($scope,salesTeamManager,regionsHandler){
 		});
 	}
 		
-	$scope.cancel=function(rep){
+	$scope.cancel = function(rep){
 		console.log(rep);
 		for(var i = 0; i < $scope.SalesReps.length;i++){
 			if(rep.uuid == $scope.SalesReps[i].uuid){angular.copy($scope.SalesReps[i],$scope.currentRep)}

@@ -5,9 +5,9 @@ mongoose.connection.on('error', console.error.bind(console, 'MongoDb connection 
 var salesPeopleSchema = new mongoose.Schema({ 
 	name : {type : String},
 	uuid: {type : String},
-	regions : {type : Array}
+	regions : {type : Array}//no good specify array of what?
 });
 //sales people mpdel
-var SalesPeople= mongoose.model('SalesPeople',salesPeopleSchema);
+var SalesPeople = mongoose.model('SalesPeople', salesPeopleSchema);
 
-module.exports=SalesPeople;
+module.exports = SalesPeople;
