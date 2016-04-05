@@ -4,8 +4,8 @@
   "description": "this is a test mean app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server/index.js"
+    "test": "node_modules/mocha/bin/mocha -R spec './server/tests/routes/spec.js'",
+    "start": "nodemon server/index.js"
   },
   "author": "",
   "license": "ISC",

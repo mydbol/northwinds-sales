@@ -37,3 +37,30 @@ footer {
 .full{
     background-color: green;
 }
+
+.add-but{
+    color:green;
+    font-size:20px
+}
+
+.team-side-nav{
+    max-height:600px;
+    overflow-y:auto
+}
+edit-image{
+    border-radius:2px;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.4)
+}
+
+.rep-regions{
+    margin-right:10px;
+    border-radius:2px;
+    padding:10px;
+    background-color:green
+}
+.full-width{
+     width:100%
+}
+.del-but{
+    margin-top:20px 
+}

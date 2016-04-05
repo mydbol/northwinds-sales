@@ -2,15 +2,14 @@
 <head>
 
     <title>NorthWinds</title>
-    <link href="/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="/public/css/style.css" rel="stylesheet">
    
-    <script type="text/javascript" src="/angular/angular.js"></script>
+    <script type="text/javascript" src="/node_modules/angular/angular.js"></script>
     <script type="text/javascript" src="/client/angular/northwindsales.js"></script>
-    <script type="text/javascript" src="/client/angular/controllers/teamManager.js"></script>
-    <script type="text/javascript" src="/client/angular/factories/memberHandler.js"></script>
-    <script type="text/javascript" src="/client/angular/factories/regionHandler.js"></script>
-
+    <script type="text/javascript" src="/client/angular/controllers/salesrep.controller.js"></script>
+    <script type="text/javascript" src="/client/angular/factories/salesrep.factory.js"></script>
+    <script type="text/javascript" src="/client/angular/factories/regions.factory.js"></script>
 
 </head>
 
@@ -51,59 +50,58 @@
 
             <div class="col-md-3">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Sales Team <span ng-click="showadder = true" style="color:green;font-size:20px" class="glyphicon glyphicon-plus-sign pull-right"></span></div>
+                    <div class="panel-heading">Sales Team <span ng-click="showadder = true"  class="glyphicon glyphicon-plus-sign add-but pull-right"></span></div>
                         <div class="panel-body" ng-hide="false">
                              <div class="panel panel-default" ng-show="showadder">
                                 <div class="panel-heading">Add a Sales Rep<span ng-click="edit(rep)"></span><img class="img-responsive" ng-src="/public/images/{{rep.uuid}}.jpeg"></div>
-                                    <div class="panel-body">
-                                        <label>Name<input type="text" ng-model="newRep.name"></label>
-                                         <label>Picture Number
-                                          
-                                          <select  class="form-controls" ng-model="newRep.uuid">
-                                          <option value="122">122</option>
+                                <div class="panel-body">
+                                    <label>Name<input type="text" ng-model="newRep.name"></label>
+                                    <label>Picture Number
+                                        <select  class="form-controls" ng-model="newRep.uuid">
+                                            <option value="122">122</option>
                                             <option value="123">123</option>
                                             <option value="124">124</option>
                                             <option value="125">125</option>
-                                          </select>
-                                          </label>
-                                          <button ng-click="showadder = false;newRep={}"  class="col-lg-5 btn btn-error">Canel</button>    
-                                        <button ng-click="addNewUser(newRep)"  class="col-lg-5 pull-right btn btn-primary">Save</button> 
-                                    </div>
-                                </div> 
-                            </div>
-                <div style="max-height:600px;overflow-y:auto">
+                                        </select>
+                                    </label>
+                                    <button ng-click="showadder = false;newRep={}"  class="col-xs-5 btn btn-error">Canel</button>    
+                                    <button ng-click="addNewUser(newRep)"  class="col-xs-5 pull-right btn btn-primary">Save</button> 
+                                </div>
+                            </div> 
+                        </div>
+                <div class="team-side-nav">
                         <div class="panel-body" >
-                             <div class="panel panel-default" ng-repeat="rep in SalesReps">
-                              
+                            <div class="panel panel-default" ng-repeat="rep in SalesReps">
                                 <div class="panel-heading">{{rep.name}} <span ng-click="edit(rep)" class="pull-right">edit&nbsp;&nbsp;<span class="glyphicon glyphicon-pencil pull-right"></span></span><img class="img-responsive"  ng-src="/public/images/{{rep.uuid}}.jpeg"></div>
                                     <div class="panel-body" ng-class="{'full':rep.regions.length == 3}">
-                                        <span ng-repeat="region in rep.regions" style="margin-right:10px;border-radius:2px;padding:10px;background-color:green">{{region[0]}}</span>
+                                    <span ng-repeat="region in rep.regions" class="reps-regions" >{{region[0]}}</span>
                                     </div>
                                 </div> 
                             </div>
                         </div>
               </div>
             </div>
-          
+          <!-- edit box section -->
             <div class="col-md-9">
                      <div class="panel panel-default" ng-show="currentRep.uuid > 0">
                         <div class="panel-heading">{{currentRep.name}}</div>
                         <div class="panel-body">
-                            <img style="border-radius:2px;box-shadow: 0px 0px 15px rgba(0,0,0,0.4)" class="img-responsive col-lg-6" ng-src="/public/images/{{currentRep.uuid}}.jpeg">
-                            <div class="col-lg-6">
+                            <img  class="img-responsive col-xs-6 edit-images" ng-src="/public/images/{{currentRep.uuid}}.jpeg">
+                            <div class="col-xs-6">
                                 <ul class="list-group" >
-                                   <li  ng-repeat="region in regions" class="list-group-item"><button ng-click="toggleRegion(region)" ng-class="checkifRegionSelected(region)" style="width:100%" class="btn btn-default" >
+                                   <li  ng-repeat="region in regions" class="list-group-item"><button ng-click="toggleRegion(region)" ng-class="checkifRegionSelected(region)" class="btn btn-default full-width" >
                                     {{region}}</button>
                                     </li>
                                 </ul>  
-                                <button ng-click="cancel(currentRep)"  class="col-lg-5 btn btn-error">Undo Changes</button>    
-                                <button ng-click="save(currentRep)"  class="col-lg-5 pull-right btn btn-primary">Save</button>  
-                                <button ng-click="delete(currentRep)"  style="margin-top:20px" class="col-lg-12 btn btn-danger">Delete {{currentRep.name}}</button>  
+                                <button ng-click="cancel(currentRep)"  class="col-xs-5 btn btn-error">Undo Changes</button>    
+                                <button ng-click="save(currentRep)"  class="col-xs-5 pull-right btn btn-primary">Save</button>  
+                                <button ng-click="delete(currentRep)"  class="col-xs-12 btn btn-danger del-but">Delete {{currentRep.name}}</button>  
                                 
                             </div>
                         </div>   
                     </div>
             </div>
+            <!-- end edit box section -->
         </div>
     
     </div>            

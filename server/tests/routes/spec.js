@@ -1,8 +1,8 @@
 /* this test was writen to test the routes needed  CRUD sales team members*/
 var requester=require('supertest');
-var server = require('../../../server');
+var server = require(__dirname+'/../../');
 var expect = require('chai').expect;
-var SalesPeople = require('../../models/salesteam.js');
+var SalesPeople = require(__dirname+'/../../models/salesteam.js');
 	
 	describe('test team member crud routes',function(){
 			SalesPeople.remove({})
